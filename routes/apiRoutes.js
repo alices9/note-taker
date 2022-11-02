@@ -34,3 +34,5 @@ apiRouter.post('/notes', (req, res) => {
         res.status(500).json("Error in adding note")
     }
 });
+
+module.exports = apiRouter;
