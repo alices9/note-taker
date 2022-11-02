@@ -4,7 +4,13 @@ const notes = require("../db/db.json");
 
 // GET Route for retrieving all the notes
 apiRouter.get('/notes', (req, res) => {
-    res.json(`${req.method} request received for note`);
+    console.log(`${req.method} request received for note`);
+    fs.readFile("../db/db.json", notes, (err) =>
+        err
+          ? console.error(err)
+          : console.log(`Error reading notes`)
+        );
+        res.json(notes);
   });
 
 // POST Route for retrieving all the notes
@@ -19,6 +25,10 @@ apiRouter.post('/notes', (req, res) => {
             title,
             text
         };
+        // const parsedNotes = JSON.parse(notes);
+        // parsedNotes.push(newNote);
+        // const reviewNote = JSON.stringify(parsedNotes)
+
         // add new review
         notes.push(newNote);
         // restringify
