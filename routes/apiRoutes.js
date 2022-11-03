@@ -1,6 +1,6 @@
 const apiRouter = require("express").Router();
 const fs = require("fs");
-const notes = require("../db/db.json");
+const notes = require("../db/db.json"); // referenced from this file location
 
 // GET Route for retrieving all the notes
 apiRouter.get('/notes', (req, res) => {
@@ -8,7 +8,7 @@ apiRouter.get('/notes', (req, res) => {
     res.json(notes);
   });
 
-// POST Route for retrieving all the notes
+// POST Route for adding notes
 apiRouter.post('/notes', (req, res) => {
     console.info(`${req.method} request received for note`);
     // destructure
@@ -21,12 +21,12 @@ apiRouter.post('/notes', (req, res) => {
             text
         };
 
-        // add new review
+        // add new note
         notes.push(newNote);
 
         // restringify
         const reviewNote = JSON.stringify(notes);
-        // write
+        // write to file, referenced from the root
         fs.writeFile("./db/db.json", reviewNote, (err) =>{
             if (err) {
                 console.error(err);
