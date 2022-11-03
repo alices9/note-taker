@@ -5,12 +5,7 @@ const notes = require("../db/db.json");
 // GET Route for retrieving all the notes
 apiRouter.get('/notes', (req, res) => {
     console.log(`${req.method} request received for note`);
-    fs.readFile("../db/db.json", notes, (err) =>
-        err
-          ? console.error(err)
-          : console.log(`Error reading notes`)
-        );
-        res.json(notes);
+    res.json(notes);
   });
 
 // POST Route for retrieving all the notes
