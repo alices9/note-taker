@@ -1,4 +1,5 @@
 const apiRouter = require("express").Router();
+const { Console } = require("console");
 const fs = require("fs");
 const notes = require("../db/db.json");
 
@@ -24,17 +25,21 @@ apiRouter.post('/notes', (req, res) => {
         // parsedNotes.push(newNote);
         // const reviewNote = JSON.stringify(parsedNotes)
 
+        console.log(newNote)
         // add new review
         notes.push(newNote);
+        console.log(notes)
         // restringify
         const reviewNote = JSON.stringify(notes);
+        console.log(reviewNote)
         // write
-        fs.writeFile("../db/db.json", reviewNote, (err) =>
-        err
-          ? console.error(err)
-          : console.log(`New note has been written to JSON file`)
-        );
-        res.status(201).json;
+        fs.writeFile("./db/db.json", reviewNote, (err) =>{
+            if (err) {
+                console.error(err);
+                res.status(500).end();
+              }
+        });
+        res.json(notes);
     } else {
         res.status(500).json("Error in adding note")
     }
