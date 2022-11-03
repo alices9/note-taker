@@ -19,8 +19,5 @@ User can type out their note on the right side and once saved, it will appear on
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Application was deployed through heroku https://dashboard.heroku.com/apps
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
