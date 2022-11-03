@@ -1,5 +1,4 @@
 const apiRouter = require("express").Router();
-const { Console } = require("console");
 const fs = require("fs");
 const notes = require("../db/db.json");
 
@@ -21,17 +20,12 @@ apiRouter.post('/notes', (req, res) => {
             title,
             text
         };
-        // const parsedNotes = JSON.parse(notes);
-        // parsedNotes.push(newNote);
-        // const reviewNote = JSON.stringify(parsedNotes)
 
-        console.log(newNote)
         // add new review
         notes.push(newNote);
-        console.log(notes)
+
         // restringify
         const reviewNote = JSON.stringify(notes);
-        console.log(reviewNote)
         // write
         fs.writeFile("./db/db.json", reviewNote, (err) =>{
             if (err) {
